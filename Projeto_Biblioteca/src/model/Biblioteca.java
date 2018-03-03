@@ -10,5 +10,7 @@ package model;
  * @author Aluno
  */
 public class Biblioteca {
-    
+    public String nome;
+    public int QdtUsuarios;
+    public int QdtLivros;
 }
