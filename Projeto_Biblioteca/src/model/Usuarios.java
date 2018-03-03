@@ -9,20 +9,18 @@ package model;
  *
  * @author Aluno
  */
-public class Clientes {
-    public int idCliente;
+public class Usuarios {
+    public String login;
+    public String senha;
+    public int idUsuario;
     public String nome;
     public String cpf;
     public String rg;
-    public String horaRetida;
-    public String nomeLivro;
-    public String generoLivro;
-    public String diaRetirada;
     public String endResid;
     public String telContato;
     public String email;
-    public String horaEntraCliente;
-    public String horaSaidaCliente;
-    public String nomeUsuario;//quem cadastrou o cliente
-    
+    public String horaEntra; /// definido na hora do login
+    public String horaSaida; /// botão de sair envia a info
+    public double salario;
+    public String cargaHoraria;
 }

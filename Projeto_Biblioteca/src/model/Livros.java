@@ -9,8 +9,12 @@ package model;
  *
  * @author Aluno
  */
-public class Biblioteca {
+public class Livros {
+    public int idLivro;
     public String nome;
-    public int qdtUsuarios;
+    public String editora;
+    public String autor;
+    public String genero;
+    public String tempoMaxAluguel;
     public int qdtLivros;
 }
