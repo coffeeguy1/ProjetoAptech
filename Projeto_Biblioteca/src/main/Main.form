@@ -213,7 +213,7 @@
                                   <Component id="jTextField5" min="-2" pref="95" max="-2" attributes="0"/>
                                   <Component id="jTextField4" min="-2" pref="95" max="-2" attributes="0"/>
                                   <Component id="jTextField6" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="txtUsuarioRedefinicaoSenha" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                                   <Component id="jButton4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -233,7 +233,7 @@
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="146" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUsuarioRedefinicaoSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -284,7 +284,7 @@
                 <Property name="text" type="java.lang.String" value="Repita a Senha"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="txtUsuarioRedefinicaoSenha">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField4">
             </Component>
