@@ -14,7 +14,7 @@ public class Clientes {
     public String nome;
     public String cpf;
     public String rg;
-    public String horaRetida;
+    public String horaRetirada;
     public String nomeLivro;
     public String generoLivro;
     public String diaRetirada;
