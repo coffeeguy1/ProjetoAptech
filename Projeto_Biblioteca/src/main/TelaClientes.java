@@ -74,8 +74,8 @@ public class TelaClientes extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        JBCadastrar = new javax.swing.JButton();
+        JBCLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -280,9 +280,9 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Cadastrar");
+        JBCadastrar.setText("Cadastrar");
 
-        jButton2.setText("Limpar");
+        JBCLimpar.setText("Limpar");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -292,9 +292,9 @@ public class TelaClientes extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(JBCadastrar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(JBCLimpar))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -361,8 +361,8 @@ public class TelaClientes extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addGap(44, 44, 44)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(JBCadastrar)
+                    .addComponent(JBCLimpar))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -476,8 +476,8 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton BDeletarLimpar;
     private javax.swing.JButton BLimpar;
     private javax.swing.JButton BPesquisa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton JBCLimpar;
+    private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
