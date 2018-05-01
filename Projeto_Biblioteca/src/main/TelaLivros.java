@@ -357,14 +357,23 @@ public class TelaLivros extends javax.swing.JFrame {
 
     private void BVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar1ActionPerformed
         // TODO add your handling code here:
+        TelaUsuario telaUsuario = new TelaUsuario();
+        telaUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BVoltar1ActionPerformed
 
     private void BVoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar2ActionPerformed
         // TODO add your handling code here:
+        TelaUsuario telaUsuario = new TelaUsuario();
+        telaUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BVoltar2ActionPerformed
 
     private void BVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar3ActionPerformed
         // TODO add your handling code here:
+        TelaUsuario telaUsuario = new TelaUsuario();
+        telaUsuario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BVoltar3ActionPerformed
 
     /**
