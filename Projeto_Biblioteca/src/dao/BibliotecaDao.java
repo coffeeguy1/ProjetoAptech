@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.Clientes;
 import model.Usuarios;
 
@@ -30,11 +31,11 @@ public class BibliotecaDao {
     + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     private final String CONSULTAR_ALUNO_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
-    private final String CONSULTAR_ALUNO_PELO_NOME = "SELECT * FROM alunos WHERE nome = ?";
+    //private final String CONSULTAR_ALUNO_PELO_NOME = "SELECT * FROM alunos WHERE nome = ?";
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String VERIFICAR_LOGIN_SENHA = "SELECT * FROM usuarios WHERE login = ?";
-    private final String ATUALIZAR_NOMEDOCURSO_PELO_NOME = "UPDATE alunos SET cursoMatriculadoAptech = ? WHERE nome = ?";
-    private final String CONSULTAR_ALUNOS_DADO_NOMEDOCURSO = "SELECT * FROM alunos WHERE cursoMatriculadoAptech = (?)";
+    private final String ATUALIZAR_SENHA_PELO_LOGIN = "UPDATE usuarios SET senha=? WHERE login=?";
+    //private final String CONSULTAR_ALUNOS_DADO_NOMEDOCURSO = "SELECT * FROM alunos WHERE cursoMatriculadoAptech = (?)";
     
     
     //conexão com  o bd
@@ -153,5 +154,31 @@ public class BibliotecaDao {
 
         return verificar;
     }
-    
+    public void atualizarSenhaPeloLogin(String login, String senha, String senhaNova) throws SQLException {
+  
+        boolean verificador = this.verificarUsuarioID(login, senha);
+        
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco!!!!");
+        
+        // Preparar a Query
+        String query = ATUALIZAR_SENHA_PELO_LOGIN;
+
+        stmt = conexao.prepareStatement(query);
+        
+        if(verificador)
+        {
+        stmt.setString(1, senhaNova);
+        stmt.setString(2, login);
+
+        //4 - executar a query
+        stmt.executeUpdate();
+        }
+        
+        JOptionPane.showMessageDialog(null, "Senha Alterada");
+        
+        //5 - Finalizar conexão
+        stmt.close();
+        conexao.close();
+}
 }

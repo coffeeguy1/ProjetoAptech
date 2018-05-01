@@ -53,8 +53,8 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtUsuarioRedefinicaoSenha = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bAlterar2 = new javax.swing.JButton();
+        bLimpar2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
@@ -82,11 +82,21 @@ public class Login extends javax.swing.JFrame {
         });
 
         bLimpar.setText("Limpar");
+        bLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimparActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setText("Biblioteca");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Biblioteca" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,9 +166,19 @@ public class Login extends javax.swing.JFrame {
 
         jLabel8.setText("Repita a Senha");
 
-        jButton3.setText("Alterar");
+        bAlterar2.setText("Alterar");
+        bAlterar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlterar2ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Limpar");
+        bLimpar2.setText("Limpar");
+        bLimpar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimpar2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel9.setText("Redefinição de Senha");
@@ -174,7 +194,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addGap(232, 232, 232)
-                                    .addComponent(jButton3))
+                                    .addComponent(bAlterar2))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(jLabel8)))
@@ -184,7 +204,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsuarioRedefinicaoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(jButton4)
+                            .addComponent(bLimpar2)
                             .addComponent(jPasswordField2)
                             .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                             .addComponent(jPasswordField4)))
@@ -216,8 +236,8 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(bAlterar2)
+                    .addComponent(bLimpar2))
                 .addGap(40, 40, 40))
         );
 
@@ -267,6 +287,54 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bEntrarActionPerformed
 
+    private void bLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparActionPerformed
+        // TODO add your handling code here:
+        txtLogin.setText("");
+        txtSenha.setText("");
+    }//GEN-LAST:event_bLimparActionPerformed
+
+    private void bLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimpar2ActionPerformed
+        // TODO add your handling code here:
+        txtUsuarioRedefinicaoSenha.setText("");
+        jPasswordField2.setText("");
+        jPasswordField3.setText("");
+        jPasswordField4.setText("");
+    }//GEN-LAST:event_bLimpar2ActionPerformed
+
+    private void bAlterar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlterar2ActionPerformed
+        // TODO add your handling code here:
+        BibliotecaDao dao;
+        try {
+            dao = new BibliotecaDao();
+            String login = txtUsuarioRedefinicaoSenha.getText();
+            String senha = String.valueOf(jPasswordField2.getPassword());
+            String senhaNova = String.valueOf(jPasswordField3.getPassword());
+            String senhaRepita = String.valueOf(jPasswordField4.getPassword());
+            if(senhaNova.equals(senhaRepita))
+            {
+                dao.atualizarSenhaPeloLogin(login, senha, senhaNova);
+                txtUsuarioRedefinicaoSenha.setText("");
+                jPasswordField2.setText("");
+                jPasswordField3.setText("");
+                jPasswordField4.setText("");
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Repetição de senha divergente da nova senha");
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_bAlterar2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,10 +372,10 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAlterar2;
     private javax.swing.JButton bEntrar;
     private javax.swing.JButton bLimpar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton bLimpar2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
