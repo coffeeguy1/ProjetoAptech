@@ -121,7 +121,7 @@ public class BibliotecaDao {
        // stmt.setString(2, senha);
 
         rs = stmt.executeQuery();
-        boolean verificar = true;
+        boolean verificar = false;
         // criar objeto
         String login1 = null;
         String senha1 = null;
@@ -135,7 +135,7 @@ public class BibliotecaDao {
         if(login.equals(login1))
         {
             System.out.println("login correto");
-            if(senha == senha1)
+            if(senha.equals(senha1))
             {
                 System.out.println("Logado");
                 verificar = true;
@@ -166,17 +166,18 @@ public class BibliotecaDao {
 
         stmt = conexao.prepareStatement(query);
         
-        if(verificador)
+        if(verificador == true)
         {
         stmt.setString(1, senhaNova);
         stmt.setString(2, login);
 
         //4 - executar a query
         stmt.executeUpdate();
-        }
-        
         JOptionPane.showMessageDialog(null, "Senha Alterada");
-        
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "A senha não confere");
+        }
         //5 - Finalizar conexão
         stmt.close();
         conexao.close();
