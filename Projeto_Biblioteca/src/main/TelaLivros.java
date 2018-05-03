@@ -7,6 +7,7 @@ package main;
 
 import dao.LivrosDao;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -204,7 +205,7 @@ public class TelaLivros extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "Genero" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Genero", "Autor", "Nome" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -395,20 +396,90 @@ public class TelaLivros extends javax.swing.JFrame {
             // TODO add your handling code here:
             LivrosDao dao = new LivrosDao();
             Livros p = new Livros();
-            int id = Integer.valueOf(txtTipoDaPesquisa.getText());
             
-            p = dao.consultarLivroPeloID(id);
-            if(p.idLivro != 0)
+            
+            String b = (String) jComboBox1.getSelectedItem(); // Pegando o valor da minha combobox
+            if(b.equals("ID"))
             {
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                int id = Integer.valueOf(txtTipoDaPesquisa.getText());
+                p = dao.consultarLivroPeloID(id);
+                
+                if(p.idLivro != 0)
+                {
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         
-            modelo.addRow(new Object[]{
-                p.idLivro, p.nome, p.editora, p.autor, p.qtdLivros
-            });
-            }else{
-                JOptionPane.showMessageDialog(null, "Nenhum ID encontrado");
+                    modelo.addRow(new Object[]{
+                    p.idLivro, p.nome, p.editora, p.autor, p.qtdLivros
+                });
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nenhum id encontrado");
+                }
             }
- 
+            else if(b.equals("Genero"))
+            {
+                String genero = txtTipoDaPesquisa.getText();
+                ArrayList lista = new ArrayList();
+                
+                lista = dao.consultarLivrosPeloGenero(genero);
+                        
+                for(int i = 0; i < lista.size(); i++)
+                {
+                    Livros lv = new Livros();
+                    lv = (Livros) lista.get(i);
+                    
+                    if(lv.genero != "")
+                    {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                        modelo.addRow(new Object[]{
+                        lv.idLivro, lv.nome, lv.editora, lv.autor, lv.qtdLivros
+                    });
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Nenhum genero encontrado");
+                    }
+                }
+            }
+            else if(b.equals("Autor"))
+            {
+                String autor = txtTipoDaPesquisa.getText();
+                ArrayList lista = new ArrayList();
+                
+                lista = dao.consultarLivrosPeloAutor(autor);
+                        
+                for(int i = 0; i < lista.size(); i++)
+                {
+                    Livros lv = new Livros();
+                    lv = (Livros) lista.get(i);
+                    
+                    if(lv.autor != "")
+                    {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                        modelo.addRow(new Object[]{
+                        lv.idLivro, lv.nome, lv.editora, lv.autor, lv.qtdLivros
+                    });
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Nenhum autor encontrado");
+                    }
+                }
+            }
+            else if(b.equals("Nome"))
+            {
+                Livros p1 = new Livros();
+                String nome = txtTipoDaPesquisa.getText();
+                p1 = dao.consultarLivroPeloNome(nome);
+                
+                if(p1.nome != "")
+                {
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        
+                    modelo.addRow(new Object[]{
+                    p1.idLivro, p1.nome, p1.editora, p1.autor, p1.qtdLivros
+                });
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nenhum nome encontrado");
+                }
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -428,9 +499,14 @@ public class TelaLivros extends javax.swing.JFrame {
         try {
             dao = new LivrosDao();
             Livros lv = new Livros();
-            if(jTable1.getSelectedRow() != -1){
-            lv.idLivro = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            dao.deletarClientePeloid(lv);
+            
+            if(jTable1.getSelectedRow() != -1)
+            {
+                lv.idLivro = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                dao.deletarClientePeloid(lv);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Selecione uma linha");
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);

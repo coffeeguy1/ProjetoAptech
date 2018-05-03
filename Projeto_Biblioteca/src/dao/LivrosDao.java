@@ -28,7 +28,9 @@ public class LivrosDao {
     //QUerys
     private final String CADASTRAR_LIVRO = "INSERT INTO livros(nome, editora, autor, genero, tempoMaxAluguel, qtdLivros) VALUES (?, ?, ?, ?, ?, ?)";
     private final String DELETAR_LIVRO_PELO_ID = "DELETE FROM livros WHERE id = ?";
-    //private final String CONSULTAR_LIVROS_PELo_ID = "SELECT * FROM livros WHERE id >= (?)";
+    private final String CONSULTAR_LIVROS_PELO_GENERO = "SELECT * FROM livros WHERE genero = (?)";
+    private final String CONSULTAR_LIVROS_PELO_AUTOR = "SELECT * FROM livros WHERE autor = (?)";
+    private final String CONSULTAR_LIVROS_PELO_NOME = "SELECT * FROM livros WHERE nome = (?)";
     private final String CONSULTAR_LIVROS_PELO_ID = "SELECT * FROM livros WHERE id = ?";
     
     //conexão com  o bd
@@ -123,16 +125,16 @@ public class LivrosDao {
         return lv;
     }
     
-    /*
-    public ArrayList consultarLivrosPeloID(int id) throws SQLException
+
+    public ArrayList consultarLivrosPeloGenero(String genero) throws SQLException
     {
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
         
-        String query =CONSULTAR_LIVROS_PELo_ID;
+        String query = CONSULTAR_LIVROS_PELO_GENERO; // genero, autor e nome
         
         stmt = conexao.prepareStatement(query);
-        stmt.setDouble(1, nota);
+        stmt.setString(1, genero);
         
         rs = stmt.executeQuery();
         
@@ -141,14 +143,17 @@ public class LivrosDao {
         while(rs.next())
         {
             //carrega o objeto
-            Serie s1 = new Serie();
-            s1.id = rs.getInt("id");
-            s1.nome = rs.getString("nome");
-            s1.temporadas = rs.getInt("temporadas");
-            s1.nota = rs.getDouble("nota");
+            Livros lv = new Livros();
+            lv.idLivro = rs.getInt("id");
+            lv.nome = rs.getString("nome");
+            lv.editora = rs.getString("editora");
+            lv.autor = rs.getString("autor");
+            lv.genero = rs.getString("genero");
+            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.qtdLivros = rs.getInt("qtdLivros");
             
             //coloca na lista
-            lista.add(s1);
+            lista.add(lv);
         }
         
         //3 - Fechar BD
@@ -158,5 +163,78 @@ public class LivrosDao {
         
         return lista;
     }
-   */
+    
+    public ArrayList consultarLivrosPeloAutor(String autor) throws SQLException
+    {
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco!!!!");
+        
+        String query = CONSULTAR_LIVROS_PELO_AUTOR; // genero, autor e nome
+        
+        stmt = conexao.prepareStatement(query);
+        stmt.setString(1, autor);
+        
+        rs = stmt.executeQuery();
+        
+        
+        ArrayList lista = new ArrayList();
+        while(rs.next())
+        {
+            //carrega o objeto
+            Livros lv = new Livros();
+            lv.idLivro = rs.getInt("id");
+            lv.nome = rs.getString("nome");
+            lv.editora = rs.getString("editora");
+            lv.autor = rs.getString("autor");
+            lv.genero = rs.getString("genero");
+            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.qtdLivros = rs.getInt("qtdLivros");
+            
+            //coloca na lista
+            lista.add(lv);
+        }
+        
+        //3 - Fechar BD
+        stmt.close();
+        rs.close();
+        conexao.close();
+        
+        return lista;
+    }
+    
+    public Livros consultarLivroPeloNome(String nome) throws SQLException {
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco!!!!");
+
+        String query = CONSULTAR_LIVROS_PELO_NOME;
+        stmt = conexao.prepareStatement(query);
+
+        stmt.setString(1, nome);
+
+        rs = stmt.executeQuery();
+
+        // criar objeto
+        Livros lv = new Livros();
+        
+        while (rs.next()) {
+            
+            //carregar o objeto
+            lv.idLivro = rs.getInt("id");
+            lv.nome = rs.getString("nome");
+            lv.editora = rs.getString("editora");
+            lv.autor = rs.getString("autor");
+            lv.genero = rs.getString("genero");
+            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.qtdLivros = rs.getInt("qtdLivros");
+        }
+            System.out.println("Nome: " + lv.nome);
+       
+        //7 - Fechar banco de dados
+        stmt.close();
+        rs.close();
+        conexao.close();
+
+        return lv;
+    }
+ 
 }
