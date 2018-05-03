@@ -5,6 +5,9 @@
  */
 package main;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ricardo
@@ -115,9 +118,15 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void bLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLivrosActionPerformed
         // TODO add your handling code here:
-        TelaLivros telaLivros = new TelaLivros();
-        telaLivros.setVisible(true);
-        dispose();
+        TelaLivros telaLivros;
+        try {
+            telaLivros = new TelaLivros();
+            telaLivros.setVisible(true);
+            dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_bLivrosActionPerformed
 
     private void bClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClienteActionPerformed

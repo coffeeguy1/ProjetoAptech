@@ -5,6 +5,15 @@
  */
 package main;
 
+import dao.LivrosDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.Livros;
+
 /**
  *
  * @author ricardo
@@ -14,11 +23,12 @@ public class TelaLivros extends javax.swing.JFrame {
     /**
      * Creates new form TelaLivros
      */
-    public TelaLivros() {
+    public TelaLivros() throws ClassNotFoundException {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +41,7 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bCadastrarLivros = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,28 +56,33 @@ public class TelaLivros extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         BVoltar3 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        BVoltar2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        txtTipoDaPesquisa = new javax.swing.JTextField();
+        BPesquisarLivros = new javax.swing.JButton();
+        jTableLimpar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         BVoltar = new javax.swing.JButton();
+        BDeletarLivro = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         BVoltar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Cadastrar");
+        bCadastrarLivros.setText("Cadastrar");
+        bCadastrarLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCadastrarLivrosActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome");
 
@@ -102,7 +117,7 @@ public class TelaLivros extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(jButton1)
+                        .addComponent(bCadastrarLivros)
                         .addGap(36, 36, 36)
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -166,7 +181,7 @@ public class TelaLivros extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(bCadastrarLivros)
                     .addComponent(jButton2))
                 .addGap(15, 15, 15)
                 .addComponent(BVoltar3)
@@ -175,64 +190,19 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastrar Livro", jPanel1);
 
-        jButton3.setText("Deletar");
-
-        jButton4.setText("Limpar");
-
-        jLabel7.setText("ID");
-
-        BVoltar2.setText("Sair");
-        BVoltar2.addActionListener(new java.awt.event.ActionListener() {
+        BPesquisarLivros.setText("Pesquisar");
+        BPesquisarLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BVoltar2ActionPerformed(evt);
+                BPesquisarLivrosActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(222, 222, 222)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 194, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BVoltar2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(33, 33, 33)
-                .addComponent(BVoltar2)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Deletar Livro", jPanel2);
-
-        jButton5.setText("Pesquisar");
-
-        jButton6.setText("Limpar");
+        jTableLimpar.setText("Limpar");
+        jTableLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTableLimparActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "Genero" }));
 
@@ -253,12 +223,24 @@ public class TelaLivros extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         BVoltar.setText("Sair");
         BVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BVoltarActionPerformed(evt);
+            }
+        });
+
+        BDeletarLivro.setText("Deletar");
+        BDeletarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDeletarLivroActionPerformed(evt);
             }
         });
 
@@ -273,14 +255,16 @@ public class TelaLivros extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTipoDaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(BPesquisarLivros)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
+                        .addComponent(jTableLimpar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BDeletarLivro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -289,16 +273,18 @@ public class TelaLivros extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipoDaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(BPesquisarLivros)
+                    .addComponent(jTableLimpar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BVoltar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BVoltar)
+                    .addComponent(BDeletarLivro))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -362,19 +348,104 @@ public class TelaLivros extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BVoltar1ActionPerformed
 
-    private void BVoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar2ActionPerformed
-        // TODO add your handling code here:
-        TelaUsuario telaUsuario = new TelaUsuario();
-        telaUsuario.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BVoltar2ActionPerformed
-
     private void BVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar3ActionPerformed
         // TODO add your handling code here:
         TelaUsuario telaUsuario = new TelaUsuario();
         telaUsuario.setVisible(true);
         dispose();
     }//GEN-LAST:event_BVoltar3ActionPerformed
+
+    private void bCadastrarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarLivrosActionPerformed
+        // TODO add your handling code here:
+        Livros lv = new Livros();
+        LivrosDao dao;
+        try {
+            dao = new LivrosDao();
+            
+            lv.nome = jTextField1.getText();
+            lv.editora = jTextField2.getText();
+            lv.autor = jTextField3.getText();
+            lv.genero = jTextField4.getText();
+            lv.qtdLivros = (Integer) jSpinner1.getValue();
+            lv.tempoMaxAluguel = jTextField5.getText();
+        
+            dao.cadastrarLivros(lv);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_bCadastrarLivrosActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jSpinner1.setValue(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BPesquisarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPesquisarLivrosActionPerformed
+        try {
+            // TODO add your handling code here:
+            LivrosDao dao = new LivrosDao();
+            Livros p = new Livros();
+            int id = Integer.valueOf(txtTipoDaPesquisa.getText());
+            
+            p = dao.consultarLivroPeloID(id);
+            if(p.idLivro != 0)
+            {
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        
+            modelo.addRow(new Object[]{
+                p.idLivro, p.nome, p.editora, p.autor, p.qtdLivros
+            });
+            }else{
+                JOptionPane.showMessageDialog(null, "Nenhum ID encontrado");
+            }
+ 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_BPesquisarLivrosActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void BDeletarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeletarLivroActionPerformed
+        // TODO add your handling code here:
+        LivrosDao dao;
+        try {
+            dao = new LivrosDao();
+            Livros lv = new Livros();
+            if(jTable1.getSelectedRow() != -1){
+            lv.idLivro = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            dao.deletarClientePeloid(lv);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BDeletarLivroActionPerformed
+
+    private void jTableLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTableLimparActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        txtTipoDaPesquisa.setText("");
+       
+    }//GEN-LAST:event_jTableLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,22 +477,23 @@ public class TelaLivros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLivros().setVisible(true);
+                try {
+                    new TelaLivros().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BDeletarLivro;
+    private javax.swing.JButton BPesquisarLivros;
     private javax.swing.JButton BVoltar;
     private javax.swing.JButton BVoltar1;
-    private javax.swing.JButton BVoltar2;
     private javax.swing.JButton BVoltar3;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bCadastrarLivros;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -429,21 +501,19 @@ public class TelaLivros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jTableLimpar;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtTipoDaPesquisa;
     // End of variables declaration//GEN-END:variables
 }
