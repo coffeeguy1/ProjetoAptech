@@ -48,7 +48,7 @@ public class TelaClientes extends javax.swing.JFrame {
         txtTipoDaPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        BSelecionarCliente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         BVoltar3 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -111,10 +111,10 @@ public class TelaClientes extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
-        jButton5.setText("Selecionar Cliente");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BSelecionarCliente.setText("Selecionar Cliente");
+        BSelecionarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BSelecionarClienteActionPerformed(evt);
             }
         });
 
@@ -150,8 +150,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton5)
+                        .addComponent(BSelecionarCliente)
                         .addGap(27, 27, 27))
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(317, 317, 317)
@@ -191,7 +190,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(BSelecionarCliente)
                     .addComponent(BVoltar3))
                 .addContainerGap())
         );
@@ -494,12 +493,17 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BDeletarLivroActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void BSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSelecionarClienteActionPerformed
         // TODO add your handling code here:
+        /*
+        if()
+        {
+        */
         DadosClientes dc = new DadosClientes();
         dc.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+        
+    }//GEN-LAST:event_BSelecionarClienteActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -544,11 +548,11 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton BDeletarLivro;
     private javax.swing.JButton BLimpar;
     private javax.swing.JButton BPesquisa;
+    private javax.swing.JButton BSelecionarCliente;
     private javax.swing.JButton BVoltar3;
     private javax.swing.JButton BVoltar7;
     private javax.swing.JButton JBCLimpar;
     private javax.swing.JButton JBCadastrar;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
