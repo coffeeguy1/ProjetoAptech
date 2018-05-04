@@ -53,10 +53,6 @@ public class TelaClientes extends javax.swing.JFrame {
         BVoltar3 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         BDeletarLivro = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        BVoltar5 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        BVoltar6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -80,6 +76,7 @@ public class TelaClientes extends javax.swing.JFrame {
         BVoltar7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Usuário - Clientes");
 
         BPesquisa.setText("Pesquisar");
         BPesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +112,11 @@ public class TelaClientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("Selecionar Cliente");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("SELECIONE UM CLIENTE DA TABELA");
@@ -189,58 +191,6 @@ public class TelaClientes extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Pesquisar Cadastro", jPanel1);
-
-        BVoltar5.setText("Sair");
-        BVoltar5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BVoltar5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
-                .addComponent(BVoltar5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
-                .addComponent(BVoltar5)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Atualizar", jPanel3);
-
-        BVoltar6.setText("Sair");
-        BVoltar6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BVoltar6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
-                .addComponent(BVoltar6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
-                .addComponent(BVoltar6)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Retirada", jPanel4);
 
         jLabel4.setText("Nome");
 
@@ -463,20 +413,6 @@ public class TelaClientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BVoltar3ActionPerformed
 
-    private void BVoltar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar5ActionPerformed
-        // TODO add your handling code here:
-        TelaUsuario telaUsuario = new TelaUsuario();
-        telaUsuario.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BVoltar5ActionPerformed
-
-    private void BVoltar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar6ActionPerformed
-        // TODO add your handling code here:
-        TelaUsuario telaUsuario = new TelaUsuario();
-        telaUsuario.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BVoltar6ActionPerformed
-
     private void BVoltar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar7ActionPerformed
         // TODO add your handling code here:
         TelaUsuario telaUsuario = new TelaUsuario();
@@ -552,6 +488,13 @@ public class TelaClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BDeletarLivroActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DadosClientes dc = new DadosClientes();
+        dc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -592,8 +535,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton BLimpar;
     private javax.swing.JButton BPesquisa;
     private javax.swing.JButton BVoltar3;
-    private javax.swing.JButton BVoltar5;
-    private javax.swing.JButton BVoltar6;
     private javax.swing.JButton BVoltar7;
     private javax.swing.JButton JBCLimpar;
     private javax.swing.JButton JBCadastrar;
@@ -610,8 +551,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

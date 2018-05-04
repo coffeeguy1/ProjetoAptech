@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +26,7 @@ public class TelaLivros extends javax.swing.JFrame {
      * Creates new form TelaLivros
      */
     public TelaLivros() throws ClassNotFoundException {
+        JFrame frame = new JFrame("Título");
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -70,6 +72,7 @@ public class TelaLivros extends javax.swing.JFrame {
         BVoltar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Livros");
 
         bCadastrarLivros.setText("Cadastrar");
         bCadastrarLivros.addActionListener(new java.awt.event.ActionListener() {

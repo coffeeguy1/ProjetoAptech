@@ -7,6 +7,7 @@ package main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -40,6 +41,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         Bsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Usuário");
 
         JLNome.setText("Nome:");
 
