@@ -69,7 +69,7 @@ public class LivrosDao {
         System.out.println("Fechou o banco de dados.");
     }
     
-    public void deletarClientePeloid(Livros lv) throws SQLException
+    public void deletarLivroPeloid(Livros lv) throws SQLException
     {
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");

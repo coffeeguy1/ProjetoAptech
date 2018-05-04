@@ -503,7 +503,7 @@ public class TelaLivros extends javax.swing.JFrame {
             if(jTable1.getSelectedRow() != -1)
             {
                 lv.idLivro = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-                dao.deletarClientePeloid(lv);
+                dao.deletarLivroPeloid(lv);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Selecione uma linha");

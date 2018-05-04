@@ -25,7 +25,7 @@ public class ClientesDao {
     private final String SENHA_BD = "123456789";
     
     //QUerys
-    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, nomeLivro, generoLivro, diaRetirada, endResid, numeroResid, telContato, email, horaEntraCliente, horaSaidaCliente, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, nomeLivro, generoLivro, diaRetirada, endResid, numeroResid, telContato, email, horaEntraCliente, horaSaidaCliente, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String CONSULTAR_CLIENTE_PELO_NOME = "SELECT * FROM clientes WHERE nome = (?)";
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
@@ -114,8 +114,8 @@ public class ClientesDao {
             cli.idCliente = rs.getInt("id");
             cli.nome = rs.getString("nome");
             cli.cpf = rs.getString("cpf");
-            cli.rg = rs.getString("cpf");
-            cli.horaRetirada = rs.getString("horaRetirada");
+            cli.rg = rs.getString("rg");
+            cli.horaRetirada = rs.getString("horarioRetirada");
             cli.nomeLivro = rs.getString("nomeLivro");
             cli.generoLivro = rs.getString("generoLivro");
             cli.diaRetirada = rs.getString("diaRetirada");
@@ -158,8 +158,8 @@ public class ClientesDao {
             cli.idCliente = rs.getInt("id");
             cli.nome = rs.getString("nome");
             cli.cpf = rs.getString("cpf");
-            cli.rg = rs.getString("cpf");
-            cli.horaRetirada = rs.getString("horaRetirada");
+            cli.rg = rs.getString("rg");
+            cli.horaRetirada = rs.getString("horarioRetirada");
             cli.nomeLivro = rs.getString("nomeLivro");
             cli.generoLivro = rs.getString("generoLivro");
             cli.diaRetirada = rs.getString("diaRetirada");

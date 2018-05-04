@@ -89,6 +89,11 @@ public class TelaClientes extends javax.swing.JFrame {
         });
 
         BLimpar.setText("Limpar");
+        BLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BLimparActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +129,11 @@ public class TelaClientes extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome" }));
 
         BDeletarLivro.setText("Deletar");
+        BDeletarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDeletarLivroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -479,13 +489,13 @@ public class TelaClientes extends javax.swing.JFrame {
             Clientes cli = new Clientes();
             
             cli.nome = jTextField1.getText();
-            cli.cpf = jTextField1.getText();
-            cli.rg = jTextField1.getText();
-            cli.endResid = jTextField1.getText();
-            cli.numeroResid = jTextField1.getText();
-            cli.telContato = jTextField1.getText();
-            cli.email = jTextField1.getText();
-            cli.nomeUsuario = jTextField1.getText();
+            cli.cpf = jTextField2.getText();
+            cli.rg = jTextField3.getText();
+            cli.endResid = jTextField4.getText();
+            cli.numeroResid = jTextField5.getText();
+            cli.telContato = jTextField6.getText();
+            cli.email = jTextField7.getText();
+            cli.nomeUsuario = jTextField8.getText();
             
             
             dao.cadastrarCliente(cli);
@@ -501,11 +511,44 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void JBCLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCLimparActionPerformed
         // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+    }//GEN-LAST:event_JBCLimparActionPerformed
+
+    private void BLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimparActionPerformed
+        // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
         txtTipoDaPesquisa.setText("");
-        
-    }//GEN-LAST:event_JBCLimparActionPerformed
+    }//GEN-LAST:event_BLimparActionPerformed
+
+    private void BDeletarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeletarLivroActionPerformed
+        // TODO add your handling code here:
+        ClientesDao dao;
+        try {
+            dao = new ClientesDao();
+            Clientes cli = new Clientes();
+            
+            if(jTable1.getSelectedRow() != -1)
+            {
+                cli.idCliente = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                dao.deletarClientePeloid(cli);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Selecione uma linha");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BDeletarLivroActionPerformed
 
     /**
      * @param args the command line arguments
