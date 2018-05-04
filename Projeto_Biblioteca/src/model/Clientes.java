@@ -19,6 +19,7 @@ public class Clientes {
     public String generoLivro;
     public String diaRetirada;
     public String endResid;
+    public String numeroResid;
     public String telContato;
     public String email;
     public String horaEntraCliente;

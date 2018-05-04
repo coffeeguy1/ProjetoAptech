@@ -6,12 +6,16 @@
 package main;
 
 import dao.BibliotecaDao;
+import dao.ClientesDao;
+import dao.LivrosDao;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Clientes;
+import model.Livros;
 
 /**
  *
@@ -41,21 +45,14 @@ public class TelaClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BPesquisa = new javax.swing.JButton();
         BLimpar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtPID = new javax.swing.JTextField();
-        txtPNome = new javax.swing.JTextField();
+        txtTipoDaPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         BVoltar3 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        BDeletar = new javax.swing.JButton();
-        BDeletarLimpar = new javax.swing.JButton();
-        txtDeletarID = new javax.swing.JTextField();
-        BVoltar4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        BDeletarLivro = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BVoltar5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -93,17 +90,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
         BLimpar.setText("Limpar");
 
-        jLabel1.setText("Pesquisar pelo Nome");
-
-        jLabel2.setText("Pesquisar Pelo ID");
-
-        txtPNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPNomeActionPerformed(evt);
-            }
-        });
-
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -119,8 +106,8 @@ public class TelaClientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
 
         jButton5.setText("Selecionar Cliente");
 
@@ -134,128 +121,64 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome" }));
+
+        BDeletarLivro.setText("Deletar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(194, 194, 194)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(BPesquisa)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPNome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BLimpar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BLimpar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTipoDaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(108, 108, 108)
-                        .addComponent(BVoltar3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(157, 157, 157))))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(64, 64, 64)
+                .addComponent(BDeletarLivro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BVoltar3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(187, 187, 187))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtPNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtTipoDaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BPesquisa)
                     .addComponent(BLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(BVoltar3))
+                    .addComponent(BVoltar3)
+                    .addComponent(BDeletarLivro))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Pesquisar Cadastro", jPanel1);
-
-        jLabel3.setText("Deletar pelo ID");
-
-        BDeletar.setText("Deletar");
-        BDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BDeletarActionPerformed(evt);
-            }
-        });
-
-        BDeletarLimpar.setText("Limpar");
-
-        BVoltar4.setText("Sair");
-        BVoltar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BVoltar4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(BDeletar)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addGap(62, 62, 62)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDeletarID, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BDeletarLimpar))
-                        .addGap(0, 153, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BVoltar4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDeletarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BDeletar)
-                    .addComponent(BDeletarLimpar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
-                .addComponent(BVoltar4)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Deletar", jPanel2);
 
         BVoltar5.setText("Sair");
         BVoltar5.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +192,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
+                .addContainerGap(492, Short.MAX_VALUE)
                 .addComponent(BVoltar5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -295,7 +218,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
+                .addContainerGap(492, Short.MAX_VALUE)
                 .addComponent(BVoltar6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -338,8 +261,18 @@ public class TelaClientes extends javax.swing.JFrame {
         });
 
         JBCadastrar.setText("Cadastrar");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarActionPerformed(evt);
+            }
+        });
 
         JBCLimpar.setText("Limpar");
+        JBCLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCLimparActionPerformed(evt);
+            }
+        });
 
         BVoltar7.setText("Sair");
         BVoltar7.addActionListener(new java.awt.event.ActionListener() {
@@ -376,7 +309,7 @@ public class TelaClientes extends javax.swing.JFrame {
                                 .addComponent(jLabel11)))
                         .addGap(54, 54, 54)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                             .addComponent(jTextField5)
                             .addComponent(jTextField6)
                             .addComponent(jTextField7)
@@ -452,24 +385,46 @@ public class TelaClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPNomeActionPerformed
-
     private void BPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPesquisaActionPerformed
-        Clientes cli = new Clientes();
+
         try {
-            BibliotecaDao dao = new BibliotecaDao();
-            int id = Integer.parseInt(txtPID.getText());
-            cli = dao.consultarClientePeloID(id);
-         
-            DefaultTableModel clientesModel = (DefaultTableModel) jTable.getModel();
-            
-            System.out.println("nome: " + cli.nome);
-            
-            Object[] dados = {cli.idCliente ,cli.nome, cli.nomeLivro, cli.telContato};
-            
-            clientesModel.addRow(dados);
+            Clientes cli = new Clientes();
+            ClientesDao dao = new ClientesDao();
+            String b = (String) jComboBox1.getSelectedItem(); // Pegando o valor da minha combobox
+            if(b.equals("ID"))
+            {
+                int id = Integer.valueOf(txtTipoDaPesquisa.getText());
+                cli = dao.consultarClientePeloID(id);
+                
+                if(cli.idCliente != 0)
+                {
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        
+                    modelo.addRow(new Object[]{
+                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.nomeLivro, cli.generoLivro, 
+                        cli.diaRetirada, cli.endResid, cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                });
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nenhum id encontrado");
+                }
+            }
+            else if(b.equals("Nome"))
+            {
+                String nome = txtTipoDaPesquisa.getText();
+                cli = dao.consultarLivroPeloNome(nome);
+                
+                if(cli.nome != "")
+                {
+                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        
+                    modelo.addRow(new Object[]{
+                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.nomeLivro, cli.generoLivro, 
+                        cli.diaRetirada, cli.endResid, cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                });
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nenhum nome encontrado");
+                }
+            }
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -480,23 +435,6 @@ public class TelaClientes extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BPesquisaActionPerformed
-
-    private void BDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeletarActionPerformed
-        try {
-            // TODO add your handling code here:
-            BibliotecaDao dao = new BibliotecaDao();
-            int id = Integer.parseInt(txtDeletarID.getText());
-            
-            dao.deletarClientePeloid(id);
-            
-            JOptionPane.showMessageDialog(null, "Cliente Deletado com sucesso");
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_BDeletarActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
@@ -512,13 +450,6 @@ public class TelaClientes extends javax.swing.JFrame {
         telaUsuario.setVisible(true);
         dispose();
     }//GEN-LAST:event_BVoltar3ActionPerformed
-
-    private void BVoltar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar4ActionPerformed
-        // TODO add your handling code here:
-        TelaUsuario telaUsuario = new TelaUsuario();
-        telaUsuario.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BVoltar4ActionPerformed
 
     private void BVoltar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar5ActionPerformed
         // TODO add your handling code here:
@@ -540,6 +471,41 @@ public class TelaClientes extends javax.swing.JFrame {
         telaUsuario.setVisible(true);
         dispose();
     }//GEN-LAST:event_BVoltar7ActionPerformed
+
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            ClientesDao dao = new ClientesDao();
+            Clientes cli = new Clientes();
+            
+            cli.nome = jTextField1.getText();
+            cli.cpf = jTextField1.getText();
+            cli.rg = jTextField1.getText();
+            cli.endResid = jTextField1.getText();
+            cli.numeroResid = jTextField1.getText();
+            cli.telContato = jTextField1.getText();
+            cli.email = jTextField1.getText();
+            cli.nomeUsuario = jTextField1.getText();
+            
+            
+            dao.cadastrarCliente(cli);
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_JBCadastrarActionPerformed
+
+    private void JBCLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCLimparActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        txtTipoDaPesquisa.setText("");
+        
+    }//GEN-LAST:event_JBCLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -577,25 +543,21 @@ public class TelaClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BDeletar;
-    private javax.swing.JButton BDeletarLimpar;
+    private javax.swing.JButton BDeletarLivro;
     private javax.swing.JButton BLimpar;
     private javax.swing.JButton BPesquisa;
     private javax.swing.JButton BVoltar3;
-    private javax.swing.JButton BVoltar4;
     private javax.swing.JButton BVoltar5;
     private javax.swing.JButton BVoltar6;
     private javax.swing.JButton BVoltar7;
     private javax.swing.JButton JBCLimpar;
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -603,13 +565,12 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -618,8 +579,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField txtDeletarID;
-    private javax.swing.JTextField txtPID;
-    private javax.swing.JTextField txtPNome;
+    private javax.swing.JTextField txtTipoDaPesquisa;
     // End of variables declaration//GEN-END:variables
 }
