@@ -16,6 +16,9 @@ public class DadosClientes extends javax.swing.JFrame {
      */
     public DadosClientes() {
         initComponents();
+        JBCLimpar.setEnabled(false);
+        BEfetivarAlteracao.setEnabled(false);
+        
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -47,10 +50,9 @@ public class DadosClientes extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        JBCadastrar = new javax.swing.JButton();
         JBCLimpar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BHabilitarAlteracao = new javax.swing.JButton();
+        BEfetivarAlteracao = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,13 +100,6 @@ public class DadosClientes extends javax.swing.JFrame {
 
         jLabel6.setText("CPF");
 
-        JBCadastrar.setText("Cadastrar");
-        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCadastrarActionPerformed(evt);
-            }
-        });
-
         JBCLimpar.setText("Limpar");
         JBCLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,24 +107,32 @@ public class DadosClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Habilitar Alteração");
+        BHabilitarAlteracao.setText("Habilitar Alteração");
+        BHabilitarAlteracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BHabilitarAlteracaoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Efetivar Alteração");
+        BEfetivarAlteracao.setText("Efetivar Alteração");
+        BEfetivarAlteracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEfetivarAlteracaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
-                .addComponent(JBCadastrar)
-                .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addContainerGap(364, Short.MAX_VALUE)
+                .addComponent(BHabilitarAlteracao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(BEfetivarAlteracao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JBCLimpar)
-                .addGap(219, 219, 219))
+                .addGap(302, 302, 302))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(109, 109, 109)
@@ -158,13 +161,12 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(352, Short.MAX_VALUE)
+                .addContainerGap(350, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCadastrar)
                     .addComponent(JBCLimpar)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(31, 31, 31))
+                    .addComponent(BHabilitarAlteracao)
+                    .addComponent(BEfetivarAlteracao))
+                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(102, 102, 102)
@@ -239,31 +241,6 @@ public class DadosClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-        // TODO add your handling code here:
-        /*try {
-            ClientesDao dao = new ClientesDao();
-            Clientes cli = new Clientes();
-
-            cli.nome = jTextField1.getText();
-            cli.cpf = jTextField2.getText();
-            cli.rg = jTextField3.getText();
-            cli.endResid = jTextField4.getText();
-            cli.numeroResid = jTextField5.getText();
-            cli.telContato = jTextField6.getText();
-            cli.email = jTextField7.getText();
-            cli.nomeUsuario = jTextField8.getText();
-
-            dao.cadastrarCliente(cli);
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-*/
-    }//GEN-LAST:event_JBCadastrarActionPerformed
-
     private void JBCLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCLimparActionPerformed
         // TODO add your handling code here:
         jTextField1.setText("");
@@ -275,6 +252,38 @@ public class DadosClientes extends javax.swing.JFrame {
         jTextField7.setText("");
         jTextField8.setText("");
     }//GEN-LAST:event_JBCLimparActionPerformed
+
+    private void BHabilitarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHabilitarAlteracaoActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setEditable(true);
+        jTextField2.setEditable(true);
+        jTextField3.setEditable(true);
+        jTextField4.setEditable(true);
+        jTextField5.setEditable(true);
+        jTextField6.setEditable(true);
+        jTextField7.setEditable(true);
+        jTextField8.setEditable(true);
+        
+        BEfetivarAlteracao.setEnabled(true);
+        JBCLimpar.setEnabled(true);
+        
+        
+    }//GEN-LAST:event_BHabilitarAlteracaoActionPerformed
+
+    private void BEfetivarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEfetivarAlteracaoActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
+        jTextField6.setEditable(false);
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        
+        JBCLimpar.setEnabled(false);
+        BEfetivarAlteracao.setEnabled(false);
+    }//GEN-LAST:event_BEfetivarAlteracaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,10 +322,9 @@ public class DadosClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BEfetivarAlteracao;
+    private javax.swing.JButton BHabilitarAlteracao;
     private javax.swing.JButton JBCLimpar;
-    private javax.swing.JButton JBCadastrar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
