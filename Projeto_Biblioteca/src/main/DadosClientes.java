@@ -35,16 +35,17 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dados do Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 981, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Dados do Cliente", jPanel1);
@@ -53,11 +54,11 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 981, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Alterar Dados", jPanel2);
@@ -66,14 +67,14 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 981, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab3", jPanel3);
+        jTabbedPane1.addTab("Marcar Retirada", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +84,7 @@ public class DadosClientes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
 
         pack();
