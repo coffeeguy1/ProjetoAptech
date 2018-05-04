@@ -398,11 +398,11 @@ public class TelaClientes extends javax.swing.JFrame {
     private void BPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPesquisaActionPerformed
 
         try {
-            Clientes cli = new Clientes();
             ClientesDao dao = new ClientesDao();
             String b = (String) jComboBox1.getSelectedItem(); // Pegando o valor da minha combobox
             if(b.equals("ID"))
             {
+                Clientes cli = new Clientes();
                 int id = Integer.valueOf(txtTipoDaPesquisa.getText());
                 cli = dao.consultarClientePeloID(id);
                 
@@ -420,19 +420,21 @@ public class TelaClientes extends javax.swing.JFrame {
             }
             else if(b.equals("Nome"))
             {
+                Clientes cli = new Clientes();
                 String nome = txtTipoDaPesquisa.getText();
-                cli = dao.consultarLivroPeloNome(nome);
+                cli = dao.consultarClientePeloNome(nome);
                 
-                if(cli.nome != "")
+                if(cli.nome.equals(""))
                 {
+                    JOptionPane.showMessageDialog(null, "Nenhum nome encontrado");
+                }else{
+                    
                     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         
                     modelo.addRow(new Object[]{
                     cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.nomeLivro, cli.generoLivro, 
                         cli.diaRetirada, cli.endResid, cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
                 });
-                }else{
-                    JOptionPane.showMessageDialog(null, "Nenhum nome encontrado");
                 }
             }
             

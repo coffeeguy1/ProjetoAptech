@@ -138,7 +138,7 @@ public class ClientesDao {
         return cli;
     }
     
-    public Clientes consultarLivroPeloNome(String nome) throws SQLException {
+    public Clientes consultarClientePeloNome(String nome) throws SQLException {
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
 

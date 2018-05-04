@@ -6,6 +6,7 @@
 package main;
 
 import dao.BibliotecaDao;
+import dao.UsuariosDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -264,7 +265,7 @@ public class Login extends javax.swing.JFrame {
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
         try {
             // TODO add your handling code here:
-            BibliotecaDao dao = new BibliotecaDao();
+            UsuariosDao dao = new UsuariosDao();
             
             String login = txtLogin.getText();
             String senha = String.valueOf(txtSenha.getPassword());
@@ -303,9 +304,9 @@ public class Login extends javax.swing.JFrame {
 
     private void bAlterar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlterar2ActionPerformed
         // TODO add your handling code here:
-        BibliotecaDao dao;
+        UsuariosDao dao;
         try {
-            dao = new BibliotecaDao();
+            dao = new UsuariosDao();
             String login = txtUsuarioRedefinicaoSenha.getText();
             String senha = String.valueOf(jPasswordField2.getPassword());
             String senhaNova = String.valueOf(jPasswordField3.getPassword());
