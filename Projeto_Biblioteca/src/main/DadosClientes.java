@@ -288,6 +288,17 @@ public class DadosClientes extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void recebe(String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario)
+    {
+                jTextField1.setText(nome);
+                jTextField2.setText(cpf);
+                jTextField3.setText(rg);
+                jTextField4.setText(endereco);
+                jTextField5.setText(numero);
+                jTextField6.setText(celular);
+                jTextField7.setText(email);
+                jTextField8.setText(nomeUsuario);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

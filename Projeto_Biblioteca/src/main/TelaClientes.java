@@ -495,14 +495,33 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void BSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSelecionarClienteActionPerformed
         // TODO add your handling code here:
-        /*
-        if()
-        {
-        */
-        DadosClientes dc = new DadosClientes();
-        dc.setVisible(true);
-        dispose();
         
+        //Essa parte do codigo vai settar as informações na tela de DADOS CLIENTES
+        ClientesDao dao;
+        try {
+            dao = new ClientesDao();
+            Clientes cli = new Clientes();
+            
+            if(jTable1.getSelectedRow() != -1)
+            {
+                cli.idCliente = (int)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                cli = dao.consultarClientePeloID(cli.idCliente);
+
+                DadosClientes dc = new DadosClientes();
+                
+                dc.setVisible(true);
+                dispose();
+                
+                dc.recebe(cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Selecione uma linha");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BSelecionarClienteActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
