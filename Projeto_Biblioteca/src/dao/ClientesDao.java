@@ -32,8 +32,10 @@ public class ClientesDao {
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
-    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?, nomeLivro = ?, generoLivro = ?,diaRetirada = ?, endResid = ?,"
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,horarioRetirada = ?, nomeLivro = ?, generoLivro = ?, diaRetirada = ?, endResid = ?,"
             + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE id = ?";
+    
+    private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ? WHERE id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -216,6 +218,32 @@ public class ClientesDao {
         //4 - executar a query
         stmt.executeUpdate();
         JOptionPane.showMessageDialog(null, "Dados Atualizados");
+        
+        //5 - Finalizar conexão
+        stmt.close();
+        conexao.close();
+    }
+    
+    public void efetivarRetiradaDeLivro(Clientes cli) throws SQLException, ClassNotFoundException {
+        
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco!!!!");
+        
+        // Preparar a Query
+        String query = ATUALIZAR_CLIENTE_PELO_ID2;
+
+        stmt = conexao.prepareStatement(query);
+        
+        stmt.setString(1, cli.horaRetirada);
+        stmt.setString(2, cli.diaRetirada);
+        
+        stmt.setInt(3, cli.idCliente);
+
+        //4 - executar a query
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Retirada de livro efetivada no sistema");
+        
+        LivrosDao dao = new LivrosDao();
         
         //5 - Finalizar conexão
         stmt.close();

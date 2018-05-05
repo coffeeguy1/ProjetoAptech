@@ -6,10 +6,12 @@
 package main;
 
 import dao.ClientesDao;
+import dao.LivrosDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Clientes;
+import model.Livros;
 
 /**
  *
@@ -64,8 +66,8 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BEfetivar = new javax.swing.JButton();
+        BLimpar2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -247,9 +249,19 @@ public class DadosClientes extends javax.swing.JFrame {
 
         jLabel2.setText("ID do livro");
 
-        jButton1.setText("Efetivar");
+        BEfetivar.setText("Efetivar");
+        BEfetivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEfetivarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Limpar");
+        BLimpar2.setText("Limpar");
+        BLimpar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BLimpar2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Horario da retirada");
 
@@ -273,9 +285,9 @@ public class DadosClientes extends javax.swing.JFrame {
                             .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BEfetivar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(BLimpar2)))
                 .addContainerGap(372, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -295,8 +307,8 @@ public class DadosClientes extends javax.swing.JFrame {
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BEfetivar)
+                    .addComponent(BLimpar2))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
 
@@ -398,6 +410,46 @@ public class DadosClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
+    private void BEfetivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEfetivarActionPerformed
+        // TODO add your handling code here:
+        Clientes cli = new Clientes();
+        Livros lv = new Livros();
+        try {
+            
+            ClientesDao dao = new ClientesDao();
+            LivrosDao dl = new LivrosDao();
+            
+            int id = Integer.parseInt(txtID.getText());
+            int idLivro = Integer.parseInt(jTextField10.getText());
+            cli.idCliente = id;
+            lv.idLivro = idLivro;
+            //cli.nome = jTextField1.getText();
+            //cli.cpf = jTextField2.getText();
+            //cli.rg = jTextField3.getText();
+            cli.horaRetirada = jTextField12.getText();
+            cli.diaRetirada = jTextField11.getText();
+            //cli.endResid = jTextField4.getText();
+            //cli.numeroResid = jTextField5.getText();
+            //cli.telContato = jTextField6.getText();
+            //cli.email = jTextField7.getText();
+            //cli.nomeUsuario = jTextField8.getText();
+            
+            dl.subtraindoLivros(lv);
+            dao.efetivarRetiradaDeLivro(cli);
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_BEfetivarActionPerformed
+
+    private void BLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpar2ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_BLimpar2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,11 +501,11 @@ public class DadosClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BEfetivar;
     private javax.swing.JButton BEfetivarAlteracao;
     private javax.swing.JButton BHabilitarAlteracao;
+    private javax.swing.JButton BLimpar2;
     private javax.swing.JButton JBCLimpar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

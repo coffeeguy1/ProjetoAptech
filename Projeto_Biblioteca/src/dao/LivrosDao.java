@@ -32,6 +32,7 @@ public class LivrosDao {
     private final String CONSULTAR_LIVROS_PELO_AUTOR = "SELECT * FROM livros WHERE autor = (?)";
     private final String CONSULTAR_LIVROS_PELO_NOME = "SELECT * FROM livros WHERE nome = (?)";
     private final String CONSULTAR_LIVROS_PELO_ID = "SELECT * FROM livros WHERE id = ?";
+    private final String SUBTRAIR_LIVROS_PELO_ID = "UPDATE livros SET qtdLivros = ? WHERE id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -235,6 +236,36 @@ public class LivrosDao {
         conexao.close();
 
         return lv;
+    }
+    
+    public void subtraindoLivros(Livros lv) throws SQLException, ClassNotFoundException {
+        lv = consultarLivroPeloID(lv.idLivro);
+        
+        if(lv.qtdLivros != 0){
+        
+        int qtdLivrosSub = lv.qtdLivros - 1;
+        
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco de SubtraindoLivros!!!!");
+        
+        // Preparar a Query
+        String query = SUBTRAIR_LIVROS_PELO_ID;
+
+        stmt = conexao.prepareStatement(query);
+        
+        stmt.setInt(1, qtdLivrosSub);
+        
+        stmt.setInt(2, lv.idLivro);
+
+        //4 - executar a query
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Retirada de livro efetivada no sistema");
+        
+        LivrosDao dao = new LivrosDao();
+        }
+        //5 - Finalizar conexão
+        stmt.close();
+        conexao.close();
     }
  
 }
