@@ -469,35 +469,32 @@ public class DadosClientes extends javax.swing.JFrame {
     private void BEfetivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEfetivarActionPerformed
         // TODO add your handling code here:
         Clientes cli = new Clientes();
+        
         Livros lv = new Livros();
         try {
-            
+            LivrosDao daoLv = new LivrosDao();
             ClientesDao dao = new ClientesDao();
             LivrosDao dl = new LivrosDao();
             
             int id = Integer.parseInt(txtID.getText());
             int idLivro = Integer.parseInt(jTextField10.getText());
+            
             cli.idCliente = id;
             lv.idLivro = idLivro;
-            //cli.nome = jTextField1.getText();
-            //cli.cpf = jTextField2.getText();
-            //cli.rg = jTextField3.getText();
             cli.horaRetirada = jTextField11.getText();
             cli.diaRetirada = jTextField12.getText();
-            //cli.endResid = jTextField4.getText();
-            //cli.numeroResid = jTextField5.getText();
-            //cli.telContato = jTextField6.getText();
-            //cli.email = jTextField7.getText();
-            //cli.nomeUsuario = jTextField8.getText();
+            
+            lv = daoLv.consultarLivroPeloID(lv.idLivro);
+            
             
             String dataRetirada = cli.diaRetirada.substring(0,2);
             System.out.println(dataRetirada);
             int dataRetiradaInteira = Integer.valueOf(dataRetirada);
-            if(dataRetiradaInteira <= 30)
-            {
-                
-            }
             
+            
+            cli.dataEntrega = String.valueOf(dataRetiradaInteira + lv.tempoMaxAluguel);
+            
+            System.out.println(cli.dataEntrega);
             
             dl.subtraindoLivros(lv);
             dao.efetivarRetiradaDeLivro(cli);

@@ -32,10 +32,10 @@ public class ClientesDao {
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
-    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,horarioRetirada = ?, dataEntrega =? , diaRetirada = ?, endResid = ?,"
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,endResid = ?,"
             + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE id = ?";
     
-    private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ? WHERE id = ?";
+    private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ?, dataEntrega = ? WHERE id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -199,18 +199,18 @@ public class ClientesDao {
         stmt.setString(1, cli.nome);
         stmt.setString(2, cli.cpf);
         stmt.setString(3, cli.rg);
-        stmt.setString(4, cli.horaRetirada);
-        stmt.setString(5, cli.diaRetirada);
-        stmt.setString(6, cli.dataEntrega);
-        stmt.setString(7, cli.endResid);
-        stmt.setString(8, cli.numeroResid);
-        stmt.setString(9, cli.telContato);
-        stmt.setString(10, cli.email);
-        stmt.setString(11, cli.horaEntraCliente);
-        stmt.setString(12, cli.horaSaidaCliente);
-        stmt.setString(13, cli.nomeUsuario); /// dado raiz
+       // stmt.setString(4, cli.horaRetirada);
+        //stmt.setString(5, cli.diaRetirada);
+        //stmt.setString(6, cli.dataEntrega);
+        stmt.setString(4, cli.endResid);
+        stmt.setString(5, cli.numeroResid);
+        stmt.setString(6, cli.telContato);
+        stmt.setString(7, cli.email);
+        stmt.setString(8, cli.horaEntraCliente);
+        stmt.setString(9, cli.horaSaidaCliente);
+        stmt.setString(10, cli.nomeUsuario); /// dado raiz
         
-        stmt.setInt(14, cli.idCliente);
+        stmt.setInt(11, cli.idCliente);
 
         //4 - executar a query
         stmt.executeUpdate();
@@ -223,12 +223,6 @@ public class ClientesDao {
     
     public void efetivarRetiradaDeLivro(Clientes cli) throws SQLException, ClassNotFoundException {
         
-        /*
-        String dataRetirada = cli.diaRetirada.substring(0,2);
-        System.out.println(dataRetirada);
-        int dataRetiradaInteira = Integer.valueOf(dataRetirada);
-        */
-        
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
         
@@ -239,8 +233,9 @@ public class ClientesDao {
         
         stmt.setString(1, cli.horaRetirada);
         stmt.setString(2, cli.diaRetirada);
+        stmt.setString(3, cli.dataEntrega);
         
-        stmt.setInt(3, cli.idCliente);
+        stmt.setInt(4, cli.idCliente);
 
         //4 - executar a query
         stmt.executeUpdate();
