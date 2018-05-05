@@ -32,7 +32,8 @@ public class ClientesDao {
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
-    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET rg = ?, horarioRetirada = ? WHERE `id = ?";
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?, horarioRetirada = ?,nomeLivro = ?, generoLivro = ?,diaRetirada = ?, endResid = ?,"
+            + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE `id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -186,30 +187,33 @@ public class ClientesDao {
         return cli;
     }
     
-    public void atualizarSenhaPeloLogin(String login, String senha, String senhaNova) throws SQLException {
-  
-        boolean verificador = this.verificarUsuarioID(login, senha);
+    public void atualizarSenhaPeloLogin(Clientes cli) throws SQLException {
         
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
         
         // Preparar a Query
-        String query = ATUALIZAR_SENHA_PELO_LOGIN;
+        String query = ATUALIZAR_CLIENTE_PELO_ID;
 
         stmt = conexao.prepareStatement(query);
         
-        if(verificador == true)
-        {
-        stmt.setString(1, senhaNova);
-        stmt.setString(2, login);
+        stmt.setString(1, cli.nome);
+        stmt.setString(2, cli.rg);
+        stmt.setString(3, cli.horaRetirada);
+        stmt.setString(4, cli.nomeLivro);
+        stmt.setString(5, cli.generoLivro);
+        stmt.setString(6, cli.diaRetirada);
+        stmt.setString(7, cli.endResid);
+        stmt.setString(8, cli.numeroResid);
+        stmt.setString(9, cli.telContato);
+        stmt.setString(10, cli.horaEntraCliente);
+        stmt.setString(11, cli.horaSaidaCliente);
+        stmt.setString(12, cli.nomeUsuario); /// dado raiz
 
         //4 - executar a query
         stmt.executeUpdate();
-        JOptionPane.showMessageDialog(null, "Senha Alterada");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "A senha não confere");
-        }
+        JOptionPane.showMessageDialog(null, "Dados Atualizados");
+        
         //5 - Finalizar conexão
         stmt.close();
         conexao.close();
