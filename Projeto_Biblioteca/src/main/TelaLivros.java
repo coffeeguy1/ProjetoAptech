@@ -68,8 +68,6 @@ public class TelaLivros extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         BVoltar = new javax.swing.JButton();
         BDeletarLivro = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        BVoltar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Livros");
@@ -293,32 +291,6 @@ public class TelaLivros extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pesquisa", jPanel3);
 
-        BVoltar1.setText("Sair");
-        BVoltar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BVoltar1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(905, Short.MAX_VALUE)
-                .addComponent(BVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(372, Short.MAX_VALUE)
-                .addComponent(BVoltar1)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Clientes Devedores", jPanel4);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -343,13 +315,6 @@ public class TelaLivros extends javax.swing.JFrame {
         telaUsuario.setVisible(true);
         dispose();
     }//GEN-LAST:event_BVoltarActionPerformed
-
-    private void BVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar1ActionPerformed
-        // TODO add your handling code here:
-        TelaUsuario telaUsuario = new TelaUsuario();
-        telaUsuario.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BVoltar1ActionPerformed
 
     private void BVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVoltar3ActionPerformed
         // TODO add your handling code here:
@@ -568,7 +533,6 @@ public class TelaLivros extends javax.swing.JFrame {
     private javax.swing.JButton BDeletarLivro;
     private javax.swing.JButton BPesquisarLivros;
     private javax.swing.JButton BVoltar;
-    private javax.swing.JButton BVoltar1;
     private javax.swing.JButton BVoltar3;
     private javax.swing.JButton bCadastrarLivros;
     private javax.swing.JButton jButton2;
@@ -581,7 +545,6 @@ public class TelaLivros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
