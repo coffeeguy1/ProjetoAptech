@@ -223,6 +223,12 @@ public class ClientesDao {
     
     public void efetivarRetiradaDeLivro(Clientes cli) throws SQLException, ClassNotFoundException {
         
+        /*
+        String dataRetirada = cli.diaRetirada.substring(0,2);
+        System.out.println(dataRetirada);
+        int dataRetiradaInteira = Integer.valueOf(dataRetirada);
+        */
+        
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
         

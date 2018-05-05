@@ -482,13 +482,22 @@ public class DadosClientes extends javax.swing.JFrame {
             //cli.nome = jTextField1.getText();
             //cli.cpf = jTextField2.getText();
             //cli.rg = jTextField3.getText();
-            cli.horaRetirada = jTextField12.getText();
-            cli.diaRetirada = jTextField11.getText();
+            cli.horaRetirada = jTextField11.getText();
+            cli.diaRetirada = jTextField12.getText();
             //cli.endResid = jTextField4.getText();
             //cli.numeroResid = jTextField5.getText();
             //cli.telContato = jTextField6.getText();
             //cli.email = jTextField7.getText();
             //cli.nomeUsuario = jTextField8.getText();
+            
+            String dataRetirada = cli.diaRetirada.substring(0,2);
+            System.out.println(dataRetirada);
+            int dataRetiradaInteira = Integer.valueOf(dataRetirada);
+            if(dataRetiradaInteira <= 30)
+            {
+                
+            }
+            
             
             dl.subtraindoLivros(lv);
             dao.efetivarRetiradaDeLivro(cli);
