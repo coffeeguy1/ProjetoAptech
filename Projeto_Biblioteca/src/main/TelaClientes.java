@@ -512,7 +512,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 dc.setVisible(true);
                 dispose();
                 
-                dc.recebe(cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario);
+                dc.recebe(cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Selecione uma linha");

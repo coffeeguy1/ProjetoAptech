@@ -32,8 +32,8 @@ public class ClientesDao {
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
-    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?, horarioRetirada = ?,nomeLivro = ?, generoLivro = ?,diaRetirada = ?, endResid = ?,"
-            + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE `id = ?";
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?, nomeLivro = ?, generoLivro = ?,diaRetirada = ?, endResid = ?,"
+            + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -187,7 +187,7 @@ public class ClientesDao {
         return cli;
     }
     
-    public void atualizarSenhaPeloLogin(Clientes cli) throws SQLException {
+    public void atualizarDadosCliente(Clientes cli) throws SQLException {
         
         conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
         System.out.println("Conectou ao banco!!!!");
@@ -198,17 +198,20 @@ public class ClientesDao {
         stmt = conexao.prepareStatement(query);
         
         stmt.setString(1, cli.nome);
-        stmt.setString(2, cli.rg);
-        stmt.setString(3, cli.horaRetirada);
-        stmt.setString(4, cli.nomeLivro);
-        stmt.setString(5, cli.generoLivro);
-        stmt.setString(6, cli.diaRetirada);
-        stmt.setString(7, cli.endResid);
-        stmt.setString(8, cli.numeroResid);
-        stmt.setString(9, cli.telContato);
-        stmt.setString(10, cli.horaEntraCliente);
-        stmt.setString(11, cli.horaSaidaCliente);
-        stmt.setString(12, cli.nomeUsuario); /// dado raiz
+        stmt.setString(2, cli.cpf);
+        stmt.setString(3, cli.rg);
+        stmt.setString(4, cli.horaRetirada);
+        stmt.setString(5, cli.nomeLivro);
+        stmt.setString(6, cli.generoLivro);
+        stmt.setString(7, cli.diaRetirada);
+        stmt.setString(8, cli.endResid);
+        stmt.setString(9, cli.numeroResid);
+        stmt.setString(10, cli.telContato);
+        stmt.setString(11, cli.horaEntraCliente);
+        stmt.setString(12, cli.horaSaidaCliente);
+        stmt.setString(13, cli.nomeUsuario); /// dado raiz
+        
+        stmt.setInt(14, cli.idCliente);
 
         //4 - executar a query
         stmt.executeUpdate();

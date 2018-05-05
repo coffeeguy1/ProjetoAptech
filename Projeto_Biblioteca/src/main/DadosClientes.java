@@ -5,6 +5,12 @@
  */
 package main;
 
+import dao.ClientesDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Clientes;
+
 /**
  *
  * @author Rafael
@@ -35,6 +41,8 @@ public class DadosClientes extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -54,11 +62,28 @@ public class DadosClientes extends javax.swing.JFrame {
         BHabilitarAlteracao = new javax.swing.JButton();
         BEfetivarAlteracao = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dados do Cliente");
 
         jLabel4.setText("Nome");
+
+        jLabel5.setText("ID");
+
+        txtID.setEditable(false);
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
 
         jTextField1.setEditable(false);
 
@@ -133,6 +158,12 @@ public class DadosClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JBCLimpar)
                 .addGap(302, 302, 302))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel5)
+                .addGap(62, 62, 62)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(109, 109, 109)
@@ -161,7 +192,11 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(350, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCLimpar)
                     .addComponent(BHabilitarAlteracao)
@@ -206,15 +241,62 @@ public class DadosClientes extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Dados do Cliente", jPanel1);
 
+        jLabel2.setText("ID do livro");
+
+        jButton1.setText("Efetivar");
+
+        jButton2.setText("Limpar");
+
+        jLabel3.setText("Horario de retirada");
+
+        jLabel8.setText("Data");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 981, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(361, 361, 361)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextField10))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jButton1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton2))))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Marcar Retirada", jPanel3);
@@ -243,6 +325,7 @@ public class DadosClientes extends javax.swing.JFrame {
 
     private void JBCLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCLimparActionPerformed
         // TODO add your handling code here:
+        txtID.setText("");
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -255,6 +338,7 @@ public class DadosClientes extends javax.swing.JFrame {
 
     private void BHabilitarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHabilitarAlteracaoActionPerformed
         // TODO add your handling code here:
+        //txtID.setEditable(true);
         jTextField1.setEditable(true);
         jTextField2.setEditable(true);
         jTextField3.setEditable(true);
@@ -272,8 +356,29 @@ public class DadosClientes extends javax.swing.JFrame {
 
     private void BEfetivarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEfetivarAlteracaoActionPerformed
         // TODO add your handling code here:
+        Clientes cli = new Clientes();
+        try {
+            
+            ClientesDao dao = new ClientesDao();
+            int id = Integer.parseInt(txtID.getText());
+            
+            cli.idCliente = id;
+            cli.nome = jTextField1.getText();
+            cli.cpf = jTextField2.getText();
+            cli.rg = jTextField3.getText();
+            cli.endResid = jTextField4.getText();
+            cli.numeroResid = jTextField5.getText();
+            cli.telContato = jTextField6.getText();
+            cli.email = jTextField7.getText();
+            cli.nomeUsuario = jTextField8.getText();
         
-        
+            dao.atualizarDadosCliente(cli);
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
@@ -288,11 +393,18 @@ public class DadosClientes extends javax.swing.JFrame {
         BEfetivarAlteracao.setEnabled(false);
     }//GEN-LAST:event_BEfetivarAlteracaoActionPerformed
 
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public void recebe(String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario)
+    public void recebe(int id, String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario)
     {
+                String id1 = String.valueOf(id);
+                
+                txtID.setText(id1);
                 jTextField1.setText(nome);
                 jTextField2.setText(cpf);
                 jTextField3.setText(rg);
@@ -339,18 +451,27 @@ public class DadosClientes extends javax.swing.JFrame {
     private javax.swing.JButton BEfetivarAlteracao;
     private javax.swing.JButton BHabilitarAlteracao;
     private javax.swing.JButton JBCLimpar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -358,5 +479,6 @@ public class DadosClientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
