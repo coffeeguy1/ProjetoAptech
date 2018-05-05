@@ -15,6 +15,6 @@ public class Livros {
     public String editora;
     public String autor;
     public String genero;
-    public String tempoMaxAluguel;
+    public int tempoMaxAluguel;
     public int qtdLivros;
 }

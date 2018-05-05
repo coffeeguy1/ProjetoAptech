@@ -370,7 +370,7 @@ public class TelaLivros extends javax.swing.JFrame {
             lv.autor = jTextField3.getText();
             lv.genero = jTextField4.getText();
             lv.qtdLivros = (Integer) jSpinner1.getValue();
-            lv.tempoMaxAluguel = jTextField5.getText();
+            lv.tempoMaxAluguel = Integer.valueOf(jTextField5.getText());
         
             dao.cadastrarLivros(lv);
         } catch (ClassNotFoundException ex) {

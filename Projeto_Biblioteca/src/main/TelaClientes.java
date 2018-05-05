@@ -366,8 +366,8 @@ public class TelaClientes extends javax.swing.JFrame {
                     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         
                     modelo.addRow(new Object[]{
-                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.nomeLivro, cli.generoLivro, 
-                        cli.diaRetirada, cli.endResid, cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.diaRetirada, cli.dataEntrega, cli.endResid, 
+                        cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
                 });
                 }else{
                     JOptionPane.showMessageDialog(null, "Nenhum id encontrado");
@@ -387,8 +387,8 @@ public class TelaClientes extends javax.swing.JFrame {
                     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         
                     modelo.addRow(new Object[]{
-                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.nomeLivro, cli.generoLivro, 
-                        cli.diaRetirada, cli.endResid, cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                    cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.diaRetirada, cli.dataEntrega, cli.endResid, 
+                        cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
                 });
                 }
             }

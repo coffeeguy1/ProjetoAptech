@@ -26,13 +26,13 @@ public class ClientesDao {
     private final String SENHA_BD = "123456789";
     
     //QUerys
-    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, nomeLivro, generoLivro, diaRetirada, endResid, numeroResid, telContato, email, horaEntraCliente, horaSaidaCliente, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, diaRetirada, dataEntrega, endResid, numeroResid, telContato, email, horaEntraCliente, horaSaidaCliente, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String CONSULTAR_CLIENTE_PELO_NOME = "SELECT * FROM clientes WHERE nome = (?)";
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
-    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,horarioRetirada = ?, nomeLivro = ?, generoLivro = ?, diaRetirada = ?, endResid = ?,"
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,horarioRetirada = ?, dataEntrega =? , diaRetirada = ?, endResid = ?,"
             + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE id = ?";
     
     private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ? WHERE id = ?";
@@ -59,16 +59,15 @@ public class ClientesDao {
         stmt.setString(2, cli.cpf);
         stmt.setString(3, cli.rg);
         stmt.setString(4, cli.horaRetirada);
-        stmt.setString(5, cli.nomeLivro);
-        stmt.setString(6, cli.generoLivro);
-        stmt.setString(7, cli.diaRetirada);
-        stmt.setString(8, cli.endResid);
-        stmt.setString(9, cli.numeroResid);
-        stmt.setString(10, cli.telContato);
-        stmt.setString(11, cli.email);
-        stmt.setString(12, cli.horaEntraCliente);
-        stmt.setString(13, cli.horaSaidaCliente);
-        stmt.setString(14, cli.nomeUsuario);
+        stmt.setString(5, cli.dataEntrega);
+        stmt.setString(6, cli.diaRetirada);
+        stmt.setString(7, cli.endResid);
+        stmt.setString(8, cli.numeroResid);
+        stmt.setString(9, cli.telContato);
+        stmt.setString(10, cli.email);
+        stmt.setString(11, cli.horaEntraCliente);
+        stmt.setString(12, cli.horaSaidaCliente);
+        stmt.setString(13, cli.nomeUsuario);
 
         //5 - Executar a query
         stmt.execute();
@@ -123,9 +122,8 @@ public class ClientesDao {
             cli.cpf = rs.getString("cpf");
             cli.rg = rs.getString("rg");
             cli.horaRetirada = rs.getString("horarioRetirada");
-            cli.nomeLivro = rs.getString("nomeLivro");
-            cli.generoLivro = rs.getString("generoLivro");
             cli.diaRetirada = rs.getString("diaRetirada");
+            cli.dataEntrega = rs.getString("dataEntrega");
             cli.endResid = rs.getString("endResid");
             cli.numeroResid = rs.getString("numeroResid");
             cli.telContato = rs.getString("telContato");
@@ -167,9 +165,8 @@ public class ClientesDao {
             cli.cpf = rs.getString("cpf");
             cli.rg = rs.getString("rg");
             cli.horaRetirada = rs.getString("horarioRetirada");
-            cli.nomeLivro = rs.getString("nomeLivro");
-            cli.generoLivro = rs.getString("generoLivro");
             cli.diaRetirada = rs.getString("diaRetirada");
+            cli.dataEntrega = rs.getString("dataEntrega");
             cli.endResid = rs.getString("endResid");
             cli.numeroResid = rs.getString("numeroResid");
             cli.telContato = rs.getString("telContato");
@@ -203,12 +200,12 @@ public class ClientesDao {
         stmt.setString(2, cli.cpf);
         stmt.setString(3, cli.rg);
         stmt.setString(4, cli.horaRetirada);
-        stmt.setString(5, cli.nomeLivro);
-        stmt.setString(6, cli.generoLivro);
-        stmt.setString(7, cli.diaRetirada);
-        stmt.setString(8, cli.endResid);
-        stmt.setString(9, cli.numeroResid);
-        stmt.setString(10, cli.telContato);
+        stmt.setString(5, cli.diaRetirada);
+        stmt.setString(6, cli.dataEntrega);
+        stmt.setString(7, cli.endResid);
+        stmt.setString(8, cli.numeroResid);
+        stmt.setString(9, cli.telContato);
+        stmt.setString(10, cli.email);
         stmt.setString(11, cli.horaEntraCliente);
         stmt.setString(12, cli.horaSaidaCliente);
         stmt.setString(13, cli.nomeUsuario); /// dado raiz

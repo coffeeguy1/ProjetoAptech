@@ -63,6 +63,7 @@ public class DadosClientes extends javax.swing.JFrame {
         JBCLimpar = new javax.swing.JButton();
         BHabilitarAlteracao = new javax.swing.JButton();
         BEfetivarAlteracao = new javax.swing.JButton();
+        Bsair2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
@@ -72,7 +73,9 @@ public class DadosClientes extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
+        Bsair = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        Bsair1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dados do Cliente");
@@ -149,6 +152,13 @@ public class DadosClientes extends javax.swing.JFrame {
             }
         });
 
+        Bsair2.setText("Sair");
+        Bsair2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bsair2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,7 +172,9 @@ public class DadosClientes extends javax.swing.JFrame {
                         .addComponent(BEfetivarAlteracao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBCLimpar)
-                        .addGap(302, 302, 302))
+                        .addGap(228, 228, 228)
+                        .addComponent(Bsair2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,6 +221,10 @@ public class DadosClientes extends javax.swing.JFrame {
                     .addComponent(BHabilitarAlteracao)
                     .addComponent(BEfetivarAlteracao))
                 .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Bsair2)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(102, 102, 102)
@@ -268,6 +284,13 @@ public class DadosClientes extends javax.swing.JFrame {
 
         jLabel8.setText("Data da retirada");
 
+        Bsair.setText("Sair");
+        Bsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BsairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -290,6 +313,10 @@ public class DadosClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BLimpar2)))
                 .addContainerGap(372, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Bsair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,20 +337,35 @@ public class DadosClientes extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BEfetivar)
                     .addComponent(BLimpar2))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(Bsair)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Marcar Retirada", jPanel3);
+
+        Bsair1.setText("Sair");
+        Bsair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bsair1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 981, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(907, Short.MAX_VALUE)
+                .addComponent(Bsair1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(372, Short.MAX_VALUE)
+                .addComponent(Bsair1)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Marcar Devolução", jPanel2);
@@ -460,9 +502,33 @@ public class DadosClientes extends javax.swing.JFrame {
 
     private void BLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpar2ActionPerformed
         // TODO add your handling code here:
-        
+        jTextField10.setText("");
+        jTextField11.setText("");
+        jTextField12.setText("");
         
     }//GEN-LAST:event_BLimpar2ActionPerformed
+
+    private void BsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsairActionPerformed
+        // TODO add your handling code here:
+        TelaClientes telacli = new TelaClientes();
+        telacli.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BsairActionPerformed
+
+    private void Bsair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bsair1ActionPerformed
+        // TODO add your handling code here:
+        TelaClientes telacli = new TelaClientes();
+        telacli.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Bsair1ActionPerformed
+
+    private void Bsair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bsair2ActionPerformed
+        // TODO add your handling code here:
+        TelaClientes telacli = new TelaClientes();
+        telacli.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_Bsair2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,6 +585,9 @@ public class DadosClientes extends javax.swing.JFrame {
     private javax.swing.JButton BEfetivarAlteracao;
     private javax.swing.JButton BHabilitarAlteracao;
     private javax.swing.JButton BLimpar2;
+    private javax.swing.JButton Bsair;
+    private javax.swing.JButton Bsair1;
+    private javax.swing.JButton Bsair2;
     private javax.swing.JButton JBCLimpar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

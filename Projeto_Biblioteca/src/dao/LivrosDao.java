@@ -57,7 +57,7 @@ public class LivrosDao {
         stmt.setString(2, lv.editora);
         stmt.setString(3, lv.autor);
         stmt.setString(4, lv.genero);
-        stmt.setString(5, lv.tempoMaxAluguel);
+        stmt.setInt(5, lv.tempoMaxAluguel);
         stmt.setInt(6, lv.qtdLivros);
 
         //5 - Executar a query
@@ -113,7 +113,7 @@ public class LivrosDao {
             lv.editora = rs.getString("editora");
             lv.autor = rs.getString("autor");
             lv.genero = rs.getString("genero");
-            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.tempoMaxAluguel = rs.getInt("tempoMaxAluguel");
             lv.qtdLivros = rs.getInt("qtdLivros");
         }
             System.out.println("Nome: " + lv.nome);
@@ -150,7 +150,7 @@ public class LivrosDao {
             lv.editora = rs.getString("editora");
             lv.autor = rs.getString("autor");
             lv.genero = rs.getString("genero");
-            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.tempoMaxAluguel = rs.getInt("tempoMaxAluguel");
             lv.qtdLivros = rs.getInt("qtdLivros");
             
             //coloca na lista
@@ -188,7 +188,7 @@ public class LivrosDao {
             lv.editora = rs.getString("editora");
             lv.autor = rs.getString("autor");
             lv.genero = rs.getString("genero");
-            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.tempoMaxAluguel = rs.getInt("tempoMaxAluguel");
             lv.qtdLivros = rs.getInt("qtdLivros");
             
             //coloca na lista
@@ -225,7 +225,7 @@ public class LivrosDao {
             lv.editora = rs.getString("editora");
             lv.autor = rs.getString("autor");
             lv.genero = rs.getString("genero");
-            lv.tempoMaxAluguel = rs.getString("tempoMaxAluguel");
+            lv.tempoMaxAluguel = rs.getInt("tempoMaxAluguel");
             lv.qtdLivros = rs.getInt("qtdLivros");
         }
             System.out.println("Nome: " + lv.nome);
