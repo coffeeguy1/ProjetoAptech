@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Clientes;
 import model.Livros;
 
@@ -29,6 +30,9 @@ public class ClientesDao {
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String CONSULTAR_CLIENTE_PELO_NOME = "SELECT * FROM clientes WHERE nome = (?)";
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
+    
+    //arrumar
+    private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET rg = ?, horarioRetirada = ? WHERE `id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -180,5 +184,34 @@ public class ClientesDao {
         conexao.close();
 
         return cli;
+    }
+    
+    public void atualizarSenhaPeloLogin(String login, String senha, String senhaNova) throws SQLException {
+  
+        boolean verificador = this.verificarUsuarioID(login, senha);
+        
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco!!!!");
+        
+        // Preparar a Query
+        String query = ATUALIZAR_SENHA_PELO_LOGIN;
+
+        stmt = conexao.prepareStatement(query);
+        
+        if(verificador == true)
+        {
+        stmt.setString(1, senhaNova);
+        stmt.setString(2, login);
+
+        //4 - executar a query
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Senha Alterada");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "A senha não confere");
+        }
+        //5 - Finalizar conexão
+        stmt.close();
+        conexao.close();
     }
 }

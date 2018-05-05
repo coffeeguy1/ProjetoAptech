@@ -272,6 +272,9 @@ public class DadosClientes extends javax.swing.JFrame {
 
     private void BEfetivarAlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEfetivarAlteracaoActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
         jTextField3.setEditable(false);
