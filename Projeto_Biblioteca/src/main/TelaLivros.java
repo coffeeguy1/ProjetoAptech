@@ -338,6 +338,7 @@ public class TelaLivros extends javax.swing.JFrame {
             lv.tempoMaxAluguel = Integer.valueOf(jTextField5.getText());
         
             dao.cadastrarLivros(lv);
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaLivros.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -442,7 +442,7 @@ public class TelaClientes extends javax.swing.JFrame {
             
             
             dao.cadastrarCliente(cli);
-            
+             JOptionPane.showMessageDialog(null, "Cadastro Realizado");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaClientes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -512,7 +512,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 dc.setVisible(true);
                 dispose();
                 
-                dc.recebe(cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario, cli.nomeDoLivro);
+                dc.recebe(cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.dataEntrega, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario, cli.nomeDoLivro);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Selecione uma linha");

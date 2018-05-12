@@ -267,5 +267,35 @@ public class LivrosDao {
         stmt.close();
         conexao.close();
     }
+    
+    public void somandoLivros(Livros lv) throws SQLException, ClassNotFoundException {
+        lv = consultarLivroPeloID(lv.idLivro);
+        
+        if(lv.qtdLivros != 0){
+        
+        int qtdLivrosSoma = lv.qtdLivros + 1;
+        
+        conexao = DriverManager.getConnection(CAMINHO, USUARIO_BD, SENHA_BD);
+        System.out.println("Conectou ao banco de SubtraindoLivros!!!!");
+        
+        // Preparar a Query
+        String query = SUBTRAIR_LIVROS_PELO_ID;
+
+        stmt = conexao.prepareStatement(query);
+        
+        stmt.setInt(1, qtdLivrosSoma);
+        
+        stmt.setInt(2, lv.idLivro);
+
+        //4 - executar a query
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Devolução do Livro realizada");
+        
+        LivrosDao dao = new LivrosDao();
+        }
+        //5 - Finalizar conexão
+        stmt.close();
+        conexao.close();
+    }
  
 }

@@ -5,6 +5,8 @@
  */
 package main;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import dao.ClientesDao;
 import dao.LivrosDao;
 import java.sql.SQLException;
@@ -77,12 +79,12 @@ public class DadosClientes extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Bsair1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
         JBDevolucao = new javax.swing.JButton();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dados do Cliente");
@@ -360,10 +362,11 @@ public class DadosClientes extends javax.swing.JFrame {
 
         jLabel1.setText("Nome do Livro");
 
-        jLabel14.setText("ID");
+        jTextField13.setEditable(false);
 
         jLabel15.setText("Data de Devolução");
 
+        jTextField14.setEditable(false);
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
@@ -371,39 +374,49 @@ public class DadosClientes extends javax.swing.JFrame {
         });
 
         JBDevolucao.setText("Efetivar Devolução");
+        JBDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBDevolucaoActionPerformed(evt);
+            }
+        });
+
+        jTextField9.setEditable(false);
+
+        jLabel14.setText("Data de Hoje");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(907, Short.MAX_VALUE)
-                .addComponent(Bsair1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(342, 342, 342)
+                .addContainerGap(327, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel1))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jTextField13)
-                    .addComponent(jTextField14)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(JBDevolucao)
-                        .addGap(31, 31, 31)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Bsair1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel1))
+                                .addGap(75, 75, 75))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(94, 94, 94)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField9)
+                            .addComponent(jTextField13)
+                            .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(JBDevolucao)
+                                .addGap(31, 31, 31)))
+                        .addGap(288, 288, 288))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(134, 134, 134)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -411,9 +424,13 @@ public class DadosClientes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(15, 15, 15)
                 .addComponent(JBDevolucao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(Bsair1)
                 .addContainerGap())
         );
@@ -545,7 +562,7 @@ public class DadosClientes extends javax.swing.JFrame {
             
             cli.dataEntrega = String.valueOf(dataRetiradaInteira + lv.tempoMaxAluguel);
             cli.dataEntrega = cli.dataEntrega + dataRetiradaParteII;
-            
+            cli.nomeDoLivro = lv.nome;
             System.out.println(cli.dataEntrega);
             
             dl.subtraindoLivros(lv);
@@ -592,12 +609,49 @@ public class DadosClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
+    private void JBDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBDevolucaoActionPerformed
+        try {
+            // TODO add your handling code here:
+            ClientesDao dao = new ClientesDao();
+            LivrosDao dao2 = new LivrosDao();
+            Livros lv = new Livros();
+            Clientes cli = new Clientes();
+            
+            int id2 = Integer.parseInt(txtID.getText());
+            
+            String nome = jTextField13.getText();
+            lv = dao2.consultarLivroPeloNome(nome);
+            
+            dao2.somandoLivros(lv);
+            cli.idCliente = id2;
+            dao.efetivarRetiradaDeLivro(cli);
+            JBDevolucao.setEnabled(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_JBDevolucaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public void recebe(int id, String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario, String nomeDoLivro)
+    public void recebe(int id, String nome, String cpf, String rg, String dataEntrega, String endereco, String numero, String celular, String email, String nomeUsuario, String nomeDoLivro)
     {
                 String id1 = String.valueOf(id);
+                if(nomeDoLivro != null)
+                {
+                    jTextField10.setEditable(false);
+                    jTextField11.setEditable(false);
+                    jTextField12.setEditable(false);
+                    
+                    BEfetivar.setEnabled(false);
+                    BLimpar2.setEnabled(false);
+                }else
+                {
+                    JBDevolucao.setEnabled(false);
+                }
                 
                 txtID.setText(id1);
                 jTextField1.setText(nome);
@@ -609,6 +663,13 @@ public class DadosClientes extends javax.swing.JFrame {
                 jTextField7.setText(email);
                 jTextField8.setText(nomeUsuario);
                 jTextField13.setText(nomeDoLivro);
+                jTextField14.setText(dataEntrega);
+                
+                Date data = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+		
+		String data2 = formatador.format( data );
+		jTextField9.setText(data2);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

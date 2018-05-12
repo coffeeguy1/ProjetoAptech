@@ -26,7 +26,7 @@ public class ClientesDao {
     private final String SENHA_BD = "123456789";
     
     //QUerys
-    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, diaRetirada, dataEntrega, endResid, numeroResid, telContato, email, nomeUsuario, nomeDoLivro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, diaRetirada, dataEntrega, endResid, numeroResid, telContato, email, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String CONSULTAR_CLIENTE_PELO_NOME = "SELECT * FROM clientes WHERE nome = (?)";
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
@@ -35,7 +35,7 @@ public class ClientesDao {
     private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,endResid = ?,"
             + "                                         numeroResid = ?, telContato = ?,email = ?, nomeUsuario = ? WHERE id = ?";
     
-    private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ?, dataEntrega = ? WHERE id = ?";
+    private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ?, dataEntrega = ?, nomeDoLivro = ? WHERE id = ?";
     
     //conexão com  o bd
     private static Connection conexao = null;
@@ -228,12 +228,13 @@ public class ClientesDao {
         stmt.setString(1, cli.horaRetirada);
         stmt.setString(2, cli.diaRetirada);
         stmt.setString(3, cli.dataEntrega);
+        stmt.setString(4, cli.nomeDoLivro);
         
-        stmt.setInt(4, cli.idCliente);
+        stmt.setInt(5, cli.idCliente);
 
         //4 - executar a query
         stmt.executeUpdate();
-        JOptionPane.showMessageDialog(null, "Retirada de livro efetivada no sistema");
+        //JOptionPane.showMessageDialog(null, "Retirada de livro efetivada no sistema");
         
         LivrosDao dao = new LivrosDao();
         
