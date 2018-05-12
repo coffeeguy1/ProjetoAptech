@@ -26,14 +26,14 @@ public class ClientesDao {
     private final String SENHA_BD = "123456789";
     
     //QUerys
-    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, diaRetirada, dataEntrega, endResid, numeroResid, telContato, email, horaEntraCliente, horaSaidaCliente, nomeUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String CADASTRAR_CLIENTE = "INSERT INTO clientes(nome, cpf, rg, horarioRetirada, diaRetirada, dataEntrega, endResid, numeroResid, telContato, email, nomeUsuario, nomeDoLivro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String DELETAR_CLIENTE_PELO_ID = "DELETE FROM clientes WHERE id = ?";
     private final String CONSULTAR_CLIENTE_PELO_NOME = "SELECT * FROM clientes WHERE nome = (?)";
     private final String CONSULTAR_CLIENTE_PELO_ID = "SELECT * FROM clientes WHERE id = ?";
     
     //arrumar
     private final String ATUALIZAR_CLIENTE_PELO_ID = "UPDATE clientes SET nome = ?, cpf = ?, rg = ?,endResid = ?,"
-            + "                                         numeroResid = ?, telContato = ?,email = ?, horaEntraCliente = ?, horaSaidaCliente = ?, nomeUsuario = ? WHERE id = ?";
+            + "                                         numeroResid = ?, telContato = ?,email = ?, nomeUsuario = ? WHERE id = ?";
     
     private final String ATUALIZAR_CLIENTE_PELO_ID2 = "UPDATE clientes SET horarioRetirada = ?, diaRetirada = ?, dataEntrega = ? WHERE id = ?";
     
@@ -65,9 +65,7 @@ public class ClientesDao {
         stmt.setString(8, cli.numeroResid);
         stmt.setString(9, cli.telContato);
         stmt.setString(10, cli.email);
-        stmt.setString(11, cli.horaEntraCliente);
-        stmt.setString(12, cli.horaSaidaCliente);
-        stmt.setString(13, cli.nomeUsuario);
+        stmt.setString(11, cli.nomeUsuario);
 
         //5 - Executar a query
         stmt.execute();
@@ -128,9 +126,8 @@ public class ClientesDao {
             cli.numeroResid = rs.getString("numeroResid");
             cli.telContato = rs.getString("telContato");
             cli.email = rs.getString("email");
-            cli.horaEntraCliente = rs.getString("horaEntraCliente");
-            cli.horaSaidaCliente = rs.getString("horaSaidaCliente");
             cli.nomeUsuario = rs.getString("nomeUsuario");
+            cli.nomeDoLivro = rs.getString("nomeDoLivro");
 
         }
             System.out.println("Nome: " + cli.nome);
@@ -171,9 +168,8 @@ public class ClientesDao {
             cli.numeroResid = rs.getString("numeroResid");
             cli.telContato = rs.getString("telContato");
             cli.email = rs.getString("email");
-            cli.horaEntraCliente = rs.getString("horaEntraCliente");
-            cli.horaSaidaCliente = rs.getString("horaSaidaCliente");
             cli.nomeUsuario = rs.getString("nomeUsuario");
+            cli.nomeDoLivro = rs.getString("nomeDoLivro");
 
         }
             System.out.println("Nome: " + cli.nome);
@@ -206,8 +202,6 @@ public class ClientesDao {
         stmt.setString(5, cli.numeroResid);
         stmt.setString(6, cli.telContato);
         stmt.setString(7, cli.email);
-        stmt.setString(8, cli.horaEntraCliente);
-        stmt.setString(9, cli.horaSaidaCliente);
         stmt.setString(10, cli.nomeUsuario); /// dado raiz
         
         stmt.setInt(11, cli.idCliente);

@@ -367,7 +367,7 @@ public class TelaClientes extends javax.swing.JFrame {
         
                     modelo.addRow(new Object[]{
                     cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.diaRetirada, cli.dataEntrega, cli.endResid, 
-                        cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                        cli.telContato, cli.email, cli.nomeUsuario
                 });
                 }else{
                     JOptionPane.showMessageDialog(null, "Nenhum id encontrado");
@@ -388,7 +388,7 @@ public class TelaClientes extends javax.swing.JFrame {
         
                     modelo.addRow(new Object[]{
                     cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.horaRetirada, cli.diaRetirada, cli.dataEntrega, cli.endResid, 
-                        cli.telContato, cli.email, cli.horaEntraCliente, cli.horaSaidaCliente, cli.nomeUsuario
+                        cli.telContato, cli.email, cli.nomeUsuario
                 });
                 }
             }
@@ -512,7 +512,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 dc.setVisible(true);
                 dispose();
                 
-                dc.recebe(cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario);
+                dc.recebe(cli.idCliente, cli.nome, cli.cpf, cli.rg, cli.endResid, cli.numeroResid, cli.telContato, cli.email, cli.nomeUsuario, cli.nomeDoLivro);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Selecione uma linha");

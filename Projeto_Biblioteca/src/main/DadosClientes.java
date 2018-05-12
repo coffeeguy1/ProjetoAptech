@@ -82,6 +82,7 @@ public class DadosClientes extends javax.swing.JFrame {
         jTextField13 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
+        JBDevolucao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dados do Cliente");
@@ -369,6 +370,8 @@ public class DadosClientes extends javax.swing.JFrame {
             }
         });
 
+        JBDevolucao.setText("Efetivar Devolução");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -380,14 +383,17 @@ public class DadosClientes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(342, 342, 342)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel1))
                 .addGap(75, 75, 75)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jTextField13)
-                    .addComponent(jTextField14))
+                    .addComponent(jTextField14)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(JBDevolucao)
+                        .addGap(31, 31, 31)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -395,17 +401,19 @@ public class DadosClientes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(JBDevolucao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(Bsair1)
                 .addContainerGap())
         );
@@ -526,7 +534,7 @@ public class DadosClientes extends javax.swing.JFrame {
             cli.horaRetirada = jTextField11.getText();
             cli.diaRetirada = jTextField12.getText();
             
-            lv = daoLv.consultarLivroPeloID(lv.idLivro);
+            lv = daoLv.consultarLivroPeloID(lv.idLivro); /// pegando dados do livro com o id passado pelo usuário
             
             
             String dataRetirada = cli.diaRetirada.substring(0,2);
@@ -587,7 +595,7 @@ public class DadosClientes extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void recebe(int id, String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario)
+    public void recebe(int id, String nome, String cpf, String rg, String endereco, String numero, String celular, String email, String nomeUsuario, String nomeDoLivro)
     {
                 String id1 = String.valueOf(id);
                 
@@ -600,6 +608,7 @@ public class DadosClientes extends javax.swing.JFrame {
                 jTextField6.setText(celular);
                 jTextField7.setText(email);
                 jTextField8.setText(nomeUsuario);
+                jTextField13.setText(nomeDoLivro);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -643,6 +652,7 @@ public class DadosClientes extends javax.swing.JFrame {
     private javax.swing.JButton Bsair1;
     private javax.swing.JButton Bsair2;
     private javax.swing.JButton JBCLimpar;
+    private javax.swing.JButton JBDevolucao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

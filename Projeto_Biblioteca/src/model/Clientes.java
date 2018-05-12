@@ -21,8 +21,7 @@ public class Clientes {
     public String numeroResid;
     public String telContato;
     public String email;
-    public String horaEntraCliente;
-    public String horaSaidaCliente;
     public String nomeUsuario;//quem cadastrou o cliente
+    public String nomeDoLivro;
     
 }
